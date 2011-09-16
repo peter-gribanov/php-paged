@@ -6,10 +6,13 @@ require_once 'Numbers.php';
 /**
  * Класс для составления списка ссылок номеров страниц
  * 
- * @package	Paged
- * @author	Peter Gribanov
- * @since	18.11.2010
- * @version	3.4
+ * @license		GNU GPL Version 3
+ * @copyright	2009, Peter Gribanov
+ * @link		http://peter-gribanov.ru/license
+ * @package		Paged
+ * @author		Peter Gribanov
+ * @since		$Date:$
+ * @version		4.$Id:$
  */
 class Links extends Numbers {
 
@@ -31,8 +34,8 @@ class Links extends Numbers {
 	/**
 	 * Создает экземпляр класса
 	 * 
-	 * @param	string	Имя переменной GET
-	 * @param	integer
+	 * @param	string	$last	Имя переменной GET
+	 * @param	integer	$variable
 	 * @return	Links
 	 */
 	public static function create($last, $variable='page'){
@@ -43,7 +46,7 @@ class Links extends Numbers {
 	 * Устанавливает название переменной в которой будут передаваться номера страницы
 	 * Устанавливает базовые URl адреса для последующего составления ссылок
 	 * 
-	 * @param	string	Имя переменной GET
+	 * @param	string	$variable	Имя переменной GET
 	 * @return	Links
 	 */
 	public function setVariable($variable='page'){

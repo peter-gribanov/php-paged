@@ -3,11 +3,14 @@ namespace paged;
 
 /**
  * Класс для составления списка номеров страниц
- *
- * @package	Paged
- * @author	Peter Gribanov
- * @since	18.11.2010
- * @version	3.4
+ * 
+ * @license		GNU GPL Version 3
+ * @copyright	2009, Peter Gribanov
+ * @link		http://peter-gribanov.ru/license
+ * @package		Paged
+ * @author		Peter Gribanov
+ * @since		$Date:$
+ * @version		4.$Id:$
  */
 class Numbers {
 
@@ -58,7 +61,7 @@ class Numbers {
 	/**
 	 * Инициализатор класса
 	 * 
-	 * @param	integer
+	 * @param	integer	$last
 	 * @return	Numbers
 	 */
 	public static function create($last){
@@ -69,7 +72,7 @@ class Numbers {
 	/**
 	 * Устанавливает длинну списка ссылок
 	 *
-	 * @param	integer
+	 * @param	integer	$length
 	 * @return	Numbers
 	 */
 	public function setListLength($length=0){
@@ -84,7 +87,7 @@ class Numbers {
 	/**
 	 * Проверяет виден ли указанный номер страницы
 	 *
-	 * @param	integer
+	 * @param	integer	$number
 	 * @return  boolen
 	 */
 	public function isVisible($number){
@@ -106,7 +109,7 @@ class Numbers {
 	/**
 	 * Устанавливает номер последней страницы
 	 *
-	 * @param	integer
+	 * @param	integer	$last
 	 * @return	Numbers
 	 */
 	public function setLast($last){
@@ -122,7 +125,7 @@ class Numbers {
 	/**
 	 * Устанавливает номер активной страницы
 	 *
-	 * @param	integer
+	 * @param	integer	$active
 	 * @return	Numbers
 	 */
 	public function setActive($active){
