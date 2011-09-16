@@ -10,8 +10,8 @@ namespace paged;
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
  * @package		Paged
  * @author		Peter Gribanov
- * @since		$Date:$
- * @version		4.$Id:$
+ * @since		$Date$
+ * @version		4.$Id$
  */
 class Numbers {
 
