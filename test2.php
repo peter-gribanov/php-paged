@@ -14,3 +14,6 @@
  * @package		Paged
  * @since		File available since Release 3.4
  */
+class Numbers {
+	
+}
