@@ -4,14 +4,17 @@ namespace paged;
 /**
  * Класс для составления списка номеров страниц
  * 
- * @license		GNU GPL Version 3
- * @copyright	2009, Peter Gribanov
+ * @author		Peter S. Gribanov <info@peter-gribanov.ru>
+ * @changedby	$Author$
+ * @version		SVN: $Id$
+ * @revision	SVN: Revision$
+ * @link		$HeadURL$
  * @link		http://peter-gribanov.ru/license
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
+ * @copyright	(c) 2009 by Peter S. Gribanov
+ * @license		GNU GPL Version 3
  * @package		Paged
- * @author		Peter Gribanov
- * @since		$Date$
- * @version		4.$Id$
+ * @since		File available since Release 3.4
  */
 class Numbers {
 
