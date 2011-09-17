@@ -41,6 +41,26 @@ class Template {
 
 
 	/**
+	 * Возвращает результат применения шаблона
+	 * 
+	 * @param	string	$path
+	 * @param	array	$result
+	 * @throws	\Exception
+	 * @return	string
+	 */
+	public static function getTemplate($path, $result=null){
+		$tpl = false;
+		$buffer = ob_get_contents();
+		ob_clean();
+		if (self::showTemplate($path, $result)){
+			$tpl = ob_get_contents();
+			ob_clean();
+		}
+		echo $buffer;
+		return $tpl;
+	}
+
+	/**
 	 * Подключает шаблон
 	 * 
 	 * @param	string	$path
@@ -48,9 +68,9 @@ class Template {
 	 * @throws	\Exception
 	 * @return	boolen
 	 */
-	public static function getTemplate($path, $result=null){
+	public static function showTemplate($path, $result=null){
 		if (!file_exists(self::getTemplatePath().$path)){
-			throw new Exception(sprintf(Language::getMessage('error_template_load'), $path));
+			throw new \Exception(sprintf(Language::getMessage('error_template_load'), $path));
 			return false;
 		}
 
