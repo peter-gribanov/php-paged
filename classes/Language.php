@@ -81,7 +81,6 @@ class Language {
 		}
 
 		self::$lang_id = $id;
-		unset(self::$messages);
 		self::$messages = null;
 		return true;
 	}
