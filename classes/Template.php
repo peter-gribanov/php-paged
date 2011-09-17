@@ -69,13 +69,17 @@ class Template {
 	 * @return	boolen
 	 */
 	public static function showTemplate($path, $result=null){
-		if (!file_exists(self::getTemplatePath().$path)){
-			throw new \Exception(Language::getMessage('error_template_load', $path));
-			return false;
+		$tpl_path = self::getTemplatePath();
+		if (!file_exists($tpl_path.$path)){
+			$tpl_path = str_replace('\\', '/', dirname(__DIR__).'/templates/'.self::DEFAULT_TEMPLATE.'/');
+			if (!file_exists($tpl_path.$path)){
+				throw new \Exception(Language::getMessage('error_template_load', $path));
+				return false;
+			}
 		}
 
 		$result = $result && is_array($result) ? $result : array();
-		require self::getTemplatePath().$path;
+		require $tpl_path.$path;
 		return true;
 	}
 
@@ -86,7 +90,7 @@ class Template {
 	 */
 	public static function getTemplatePath(){
 		if (!self::$template_path)
-			self::$template_path = str_replace('\\', '/', dirname(dirname(__FILE__)).'/templates/'.self::$template_id.'/');
+			self::$template_path = str_replace('\\', '/', dirname(__DIR__).'/templates/'.self::$template_id.'/');
 
 		return self::$template_path;
 	}
@@ -104,7 +108,7 @@ class Template {
 			return false;
 		}
 
-		$path = str_replace('\\', '/', dirname(dirname(__FILE__)).'/templates/'.$id.'/');
+		$path = str_replace('\\', '/', dirname(__DIR__).'/templates/'.$id.'/');
 		if (!is_dir($path)){
 			throw new \InvalidArgumentException(Language::getMessage('error_template_id_path', $id));
 			return false;
