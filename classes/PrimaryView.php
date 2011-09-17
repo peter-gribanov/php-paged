@@ -36,40 +36,50 @@ class PrimaryView {
 	}
 
 	/**
-	 * Возвращает/Выводит меню в виде списка
+	 * Возвращает меню в виде списка
 	 * 
-	 * @param	boolen	$return
 	 * @return	array
 	 */
-	public function getList($return=false){
+	public function getList(){
 		$menu = $this->menu->export();
 		$link = '?'.$menu['variable'].'=';
 
-		if ($return){
-			$list = array();
-			foreach ($menu['list'] as $item)
-				$list[] = Template::getTemplate('primary.php', array($item, $link));
+		$list = array();
+		foreach ($menu['list'] as $item)
+			$list[] = Template::getTemplate('primary.php', array($item, $link));
 
-			return $list;
-
-		} else {
-			foreach ($menu['list'] as $item)
-				Template::showTemplate('primary.php', array($item, $link));
-		}
+		return $list;
 	}
 
 	/**
-	 * Возвращает/Выводит меню упакованное в строку
+	 * Выводит меню в виде списка
 	 * 
-	 * @param	boolen	$return
+	 * @return	array
+	 */
+	public function showList(){
+		$menu = $this->menu->export();
+		$link = '?'.$menu['variable'].'=';
+
+		foreach ($menu['list'] as $item)
+			Template::showTemplate('primary.php', array($item, $link));
+	}
+
+	/**
+	 * Возвращает меню упакованное в строку
+	 * 
 	 * @return string
 	 */
-	public function getPack($return=false){
-		if ($return){
-			return implode('', $this->getList(), $return);
-		} else {
-			$this->getList($return);
-		}
+	public function getPack(){
+	return implode('', $this->getList());
+	}
+
+	/**
+	 * Выводит меню упакованное в строку
+	 * 
+	 * @return string
+	 */
+	public function showPack(){
+		$this->showList();
 	}
 
 }
