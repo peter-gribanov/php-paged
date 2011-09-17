@@ -1,6 +1,8 @@
 <?php
 namespace Paged;
 
+require_once 'View.php';
+
 /**
  * Основной вид для меню
  * Он является базовым для других видов
@@ -15,14 +17,14 @@ namespace Paged;
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
-class PrimaryView {
+class PrimaryView implements View {
 
 	/**
 	 * Декорируемый объект модели
 	 * 
 	 * @var	\Paged\Menu
 	 */
-	protected $menu;
+	private $menu;
 
 
 	/**
@@ -41,27 +43,20 @@ class PrimaryView {
 	 * @return	array
 	 */
 	public function getList(){
-		$menu = $this->menu->export();
+		$menu = $this->export();
 		$link = '?'.$menu['variable'].'=';
 
 		$list = array();
+		if ($menu['list']){
+			$first = array_shift($menu['list']);
+			$tpl = $first!=$menu['active'] ? 'primary.php' : 'primary_active.php';
+			$list[] = Template::getTemplate($tpl, array($first, '', Language::getMessage('page_number', $first)));
+		}
 		foreach ($menu['list'] as $item)
-			$list[] = Template::getTemplate('primary.php', array($item, $link));
+			$tpl = $item!=$menu['active'] ? 'primary.php' : 'primary_active.php';
+			$list[] = Template::getTemplate($tpl, array($item, $link.$item, Language::getMessage('page_number', $item)));
 
 		return $list;
-	}
-
-	/**
-	 * Выводит меню в виде списка
-	 * 
-	 * @return	array
-	 */
-	public function showList(){
-		$menu = $this->menu->export();
-		$link = '?'.$menu['variable'].'=';
-
-		foreach ($menu['list'] as $item)
-			Template::showTemplate('primary.php', array($item, $link));
 	}
 
 	/**
@@ -70,16 +65,25 @@ class PrimaryView {
 	 * @return string
 	 */
 	public function getPack(){
-	return implode('', $this->getList());
+		return Template::getTemplate('primary_pack.php', $this->getList());
 	}
 
 	/**
 	 * Выводит меню упакованное в строку
 	 * 
-	 * @return string
+	 * @return void
 	 */
 	public function showPack(){
-		$this->showList();
+		Template::showTemplate('primary_pack.php', $this->getList());
+	}
+
+	/**
+	 * Экспортирует данные модели
+	 * 
+	 * @return	array
+	 */
+	public function export(){
+		return $this->menu->export();
 	}
 
 }

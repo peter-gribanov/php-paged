@@ -74,7 +74,7 @@ class Language {
 			return false;
 		}
 
-		$path = str_replace('\\', '/', dirname(dirname(__FILE__)).'/lang/'.$id.'/');
+		$path = str_replace('\\', '/', dirname(__DIR__).'/lang/'.$id.'/');
 		if (!is_dir($path)){
 			throw new \InvalidArgumentException(Language::getMessage('error_lang_id_path', $id));
 			return false;
@@ -93,7 +93,7 @@ class Language {
 	 */
 	private static function loadMessages(){
 		if (!is_array(self::$messages)){
-			$file = str_replace('\\', '/', dirname(dirname(__FILE__)).'/lang/'.self::$lang_id.'/.parameters.php');
+			$file = str_replace('\\', '/', dirname(__DIR__).'/lang/'.self::$lang_id.'/.parameters.php');
 			if (!file_exists($file)){
 				throw new \Exception('File with language messages is not set.');
 				return false;
