@@ -9,12 +9,10 @@ require_once 'Numbers.php';
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @changedby	$Author$
- * @version		SVN: $Id$
- * @revision	SVN: $Revision$
+ * @version		SVN: $Revision$
  * @link		$HeadURL$
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
- * @copyright	(c) 2009 by Peter S. Gribanov
+ * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  * @since		File available since Release 3.4
  */
