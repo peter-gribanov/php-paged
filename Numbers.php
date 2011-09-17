@@ -9,7 +9,7 @@ namespace paged;
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
  * @changedby	$Author$
  * @version		SVN: $Id$
- * @revision	SVN: Revision$
+ * @revision	SVN: $Revision$
  * @link		$HeadURL$
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
  * @copyright	(c) 2009 by Peter S. Gribanov
