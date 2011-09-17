@@ -9,11 +9,11 @@ namespace Paged;
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
  * @version		SVN: $Revision$
+ * @since		$Date$
  * @link		$HeadURL$
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
- * @since		File available since Release 3.4
  */
 class Template {
 
@@ -70,7 +70,7 @@ class Template {
 	 */
 	public static function showTemplate($path, $result=null){
 		if (!file_exists(self::getTemplatePath().$path)){
-			throw new \Exception(sprintf(Language::getMessage('error_template_load'), $path));
+			throw new \Exception(Language::getMessage('error_template_load', $path));
 			return false;
 		}
 
@@ -106,7 +106,7 @@ class Template {
 
 		$path = str_replace('\\', '/', dirname(dirname(__FILE__)).'/templates/'.$id.'/');
 		if (!is_dir($path)){
-			throw new \InvalidArgumentException(sprintf(Language::getMessage('error_template_id_path'), $id));
+			throw new \InvalidArgumentException(Language::getMessage('error_template_id_path', $id));
 			return false;
 		}
 

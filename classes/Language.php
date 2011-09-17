@@ -9,11 +9,11 @@ namespace Paged;
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
  * @version		SVN: $Revision$
+ * @since		$Date$
  * @link		$HeadURL$
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
- * @since		File available since Release 3.4
  */
 class Language {
 
@@ -37,11 +37,21 @@ class Language {
 	 * Возвращает сообщение для указанного ключа
 	 * 
 	 * @param	string	$key
+	 * @throws	\Exception
 	 * @return	mixid
 	 */
 	public static function getMessage($key){
 		self::loadMessages();
-		return isset(self::$messages[$key]) ? self::$messages[$key] : false;
+
+		if (func_num_args()==1){
+			return isset(self::$messages[$key]) ? self::$messages[$key] : false; 
+
+		} elseif (func_num_args()>1){
+			if (!isset(self::$messages[$key])) return false;
+			$params = func_get_args();
+			$params[0] =  self::$messages[$key];
+			return call_user_func_array('sprintf', $params);
+		}
 	}
 
 	/**
