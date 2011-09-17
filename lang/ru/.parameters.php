@@ -1,4 +1,15 @@
 <?php
+/**
+ * @category	Basic library
+ * @package		Paged
+ * @author		Peter S. Gribanov <info@peter-gribanov.ru>
+ * @version		SVN: $Revision$
+ * @since		$Date$
+ * @link		$HeadURL$
+ * @tutorial	http://peter-gribanov.ru/#open-source/paged
+ * @copyright	(c) 2008 by Peter S. Gribanov
+ * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
+ */
 $mess['error_lang_id']	= 'Идентификатор языка должен быть не пустой строкой.';
 $mess['error_lang_id_path']	= 'Директория языка (%s) не обнаружена.';
 $mess['error_list_length']	= 'Длина списка должна быть числом.';
