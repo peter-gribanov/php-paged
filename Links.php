@@ -6,14 +6,17 @@ require_once 'Numbers.php';
 /**
  * Класс для составления списка ссылок номеров страниц
  * 
- * @license		GNU GPL Version 3
- * @copyright	2009, Peter Gribanov
- * @link		http://peter-gribanov.ru/license
- * @tutorial	http://peter-gribanov.ru/#open-source/paged
+ * @category	Basic library
  * @package		Paged
- * @author		Peter Gribanov
- * @since		$Date$
- * @version		4.$Id$
+ * @author		Peter S. Gribanov <info@peter-gribanov.ru>
+ * @changedby	$Author$
+ * @version		SVN: $Id$
+ * @revision	SVN: Revision$
+ * @link		$HeadURL$
+ * @tutorial	http://peter-gribanov.ru/#open-source/paged
+ * @copyright	(c) 2009 by Peter S. Gribanov
+ * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
+ * @since		File available since Release 3.4
  */
 class Links extends Numbers {
 
