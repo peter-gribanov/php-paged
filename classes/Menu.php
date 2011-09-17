@@ -8,11 +8,11 @@ namespace Paged;
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
  * @version		SVN: $Revision$
+ * @since		$Date$
  * @link		$HeadURL$
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
- * @since		File available since Release 3.4
  */
 class Menu {
 
@@ -46,10 +46,11 @@ class Menu {
 
 	/**
 	 * Длинна списка номеров страниц
+	 * При значении 0 выводит весь список
 	 * 
 	 * @var	integer
 	 */
-	private $list_length = 0;
+	private $list_length = self::DEFAUL_LIST_LENGTH;
 
 	/**
 	 * Название переменной GET в которой будут передаваться номера страницы
@@ -57,13 +58,6 @@ class Menu {
 	 * @var	string
 	 */
 	private $variable = self::DEFAUL_VARIABLE;
-
-	/**
-	 * Экземпляр класса
-	 * 
-	 * @var	Menu
-	 */
-	private static $instance;
 
 
 	/**
@@ -75,31 +69,20 @@ class Menu {
 
 
 	/**
-	 * Закрытый конструктор
+	 * Длинна списка номеров страниц по умолчанию
+	 * При значении 0 выводит весь список
 	 * 
-	 * @return	void
+	 * @var	integer
 	 */
-	private function __construct(){
-	}
+	const DEFAUL_LIST_LENGTH = 10;
 
-	/**
-	 * Инициалезирует объект
-	 * 
-	 * @return	Menu
-	 */
-	public static function instance(){
-		if (!self::$instance)
-			self::$instance = new self();
-
-		return self::$instance;
-	}
 
 	/**
 	 * Устанавливает номер последней страницы
 	 *
 	 * @param	integer	$last
 	 * @throws	\InvalidArgumentException
-	 * @return	Numbers
+	 * @return	\Paged\Menu
 	 */
 	public function setLast($last){
 		if (!is_int($last) || $last < 1)
@@ -115,7 +98,7 @@ class Menu {
 	 * 
 	 * @param	integer	$length
 	 * @throws	\InvalidArgumentException
-	 * @return	Menu
+	 * @return	\Paged\Menu
 	 */
 	public function setListLength($length=0){
 		if (!is_int($length) || $length < 0)
@@ -130,7 +113,7 @@ class Menu {
 	 * 
 	 * @param	integer	$active
 	 * @throws	\InvalidArgumentException
-	 * @return	Menu
+	 * @return	\Paged\Menu
 	 */
 	public function setActive($active){
 		if (!is_int($active) || $active < 1)
@@ -145,7 +128,7 @@ class Menu {
 	 * 
 	 * @param	string	$variable
 	 * @throws	\InvalidArgumentException
-	 * @return	Menu
+	 * @return	\Paged\Menu
 	 */
 	public function setVariable($variable){
 		if (!is_string($variable) || !trim($variable))
@@ -200,7 +183,9 @@ class Menu {
 		return array(
 			'ferst'		=> 1,
 			'last'		=> $this->last,
-			'activ'		=> $this->active,
+			'previous'	=> ($this->active-1 >= 1 ? $this->active-1 : false),
+			'next'		=> ($this->active+1 <= $this->last ? $this->active+1 : false),
+			'active'	=> $this->active,
 			'list'		=> $this->calculateList(),
 			'variable'	=> $this->variable,
 		);
