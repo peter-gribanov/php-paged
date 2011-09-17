@@ -25,6 +25,7 @@ foreach($paged->getList() as $num){
 	}
 }
 
+
 ?>
 </body>
 </html>
