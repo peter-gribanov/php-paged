@@ -24,6 +24,13 @@ class Language {
 	 */
 	private static $messages;
 
+	/**
+	 * Идентификатор языка
+	 * 
+	 * @var	string
+	 */
+	private static $lang_id = self::DEFAUL_LANG;
+
 
 	/**
 	 * Язык по умолчанию
@@ -55,6 +62,31 @@ class Language {
 	}
 
 	/**
+	 * Устанавливает идентификатор языка
+	 * 
+	 * @param	string	$id
+	 * @throws	\InvalidArgumentException
+	 * @return	boolean
+	 */
+	public static function setLangID($id){
+		if (!is_string($id) || !trim($id) || strlen($id)!=2){
+			throw new \InvalidArgumentException(Language::getMessage('error_lang_id'));
+			return false;
+		}
+
+		$path = str_replace('\\', '/', dirname(dirname(__FILE__)).'/lang/'.$id.'/');
+		if (!is_dir($path)){
+			throw new \InvalidArgumentException(Language::getMessage('error_lang_id_path', $id));
+			return false;
+		}
+
+		self::$lang_id = $id;
+		unset(self::$messages);
+		self::$messages = null;
+		return true;
+	}
+
+	/**
 	 * Загружает список языковых сообщений
 	 * 
 	 * @throws	\Exception
@@ -62,8 +94,7 @@ class Language {
 	 */
 	private static function loadMessages(){
 		if (!is_array(self::$messages)){
-			$id = defined('LANG') ? LANG : self::DEFAUL_LANG;
-			$file = str_replace('\\', '/', dirname(dirname(__FILE__)).'/lang/'.$id.'/.parameters.php');
+			$file = str_replace('\\', '/', dirname(dirname(__FILE__)).'/lang/'.self::$lang_id.'/.parameters.php');
 			if (!file_exists($file)){
 				throw new \Exception('File with language messages is not set.');
 				return false;

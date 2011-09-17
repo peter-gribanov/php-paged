@@ -1,4 +1,6 @@
 <?php
+$mess['error_lang_id']	= 'Language identifier must be an empty string.';
+$mess['error_lang_id_path']	= 'Directory of language (%s) is not found.';
 $mess['error_list_length']	= 'The length of the list must be a number.';
 $mess['error_active']	= 'The current page number must be a number.';
 $mess['error_last']	= 'The last page number must be a number.';
