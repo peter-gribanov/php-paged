@@ -7,10 +7,10 @@ namespace Paged;
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		SVN: $Revision$
+ * @version		4.0 SVN: $Revision$
  * @since		$Date$
  * @link		$HeadURL$
- * @tutorial	http://peter-gribanov.ru/#open-source/paged
+ * @tutorial	http://peter-gribanov.ru/#open-source/paged/paged_4-x
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */

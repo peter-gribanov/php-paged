@@ -13,7 +13,7 @@ require 'classes/PluginView.php';
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		SVN: $Revision$
+ * @version		4.0 SVN: $Revision$
  * @since		$Date$
  * @link		$HeadURL$
  * @tutorial	http://peter-gribanov.ru/#open-source/paged
