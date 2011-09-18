@@ -1,1 +1,1 @@
-<a href="<?=$result[1]?>" title="<?=$result[2]?>"><?=$result[0]?></a>
+<a href="<?=$result[1]?>" title="<?=$result[2]?>"><?=$result[3]?></a>
