@@ -113,14 +113,13 @@ class Menu {
 	 * 
 	 * @param	integer	$active
 	 * @throws	\InvalidArgumentException
-	 * @return	\Paged\Menu
+	 * @return	void
 	 */
-	public function setActive($active){
-		if (!is_int($active) || $active < 1)
+	private function setActive($active){
+		if (!is_numeric($active) || intval($active)!=$active || $active < 1)
 			throw new \InvalidArgumentException(Language::getMessage('error_active'));
 
 		$this->active = intval($active);
-		return $this;
 	}
 
 	/**
@@ -136,7 +135,7 @@ class Menu {
 
 		$this->variable = trim($variable);
 
-		if (isset($_GET[$variable]) && is_numeric($_GET[$variable]))
+		if (isset($_GET[$variable]))
 			$this->setActive($_GET[$variable]);
 
 		return $this;
