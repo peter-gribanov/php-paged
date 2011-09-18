@@ -1,8 +1,6 @@
 <?php
 namespace Paged;
 
-require 'MenuInterface.php';
-
 /**
  * Модель описывающая список страниц
  * 
@@ -16,7 +14,7 @@ require 'MenuInterface.php';
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
-class Menu implements MenuInterface {
+class Menu {
 
 	/**
 	 * Номер активной страницы

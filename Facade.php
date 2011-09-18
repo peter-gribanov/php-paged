@@ -54,13 +54,16 @@ class Facade {
 	 * @throws	\Exception
 	 * @return	\Paged\PrimaryView
 	 */
-	public static function setView($menu, $view_name){
+	public static function setView($menu, $view_name=null){
 		if (!is_object($menu))
 			throw new InvalidArgumentException(Language::getMessage('error_view_object'));
 
 		// меню еще не упаковано ни в какой вид
-		if ($menu instanceof \Paged\MenuInterface)
+		if ($menu instanceof \Paged\Menu)
 			$menu = new PrimaryView($menu);
+
+		if ($view_name===null)
+			return $menu;
 
 		$class_name = 'View'.$view_name;
 
@@ -88,6 +91,28 @@ class Facade {
 		self::$view_load_list[] = $class_name;
 
 		return $view;
+	}
+
+	/**
+	 * Устанавливает идентификатор языка
+	 * 
+	 * @param	string	$id
+	 * @throws	\InvalidArgumentException
+	 * @return	boolean
+	 */
+	public static function setLangID($id){
+		return Language::setLangID($id);
+	}
+
+	/**
+	 * Enter description here ...
+	 * 
+	 * @param	string	$id
+	 * @throws	\InvalidArgumentException
+	 * @return	boolean
+	 */
+	public static function setTemplateID($id){
+		return Template::setTemplateID($id);
 	}
 
 }
