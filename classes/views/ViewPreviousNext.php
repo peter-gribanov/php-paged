@@ -25,14 +25,14 @@ class ViewPreviousNext extends PluginView {
 		$menu = $this->export();
 		$list = parent::getList();
 
-		if ($menu['previous']==$menu['ferst']){
+		if ($menu['previous']===false){
 			$link = isset($menu['first_link']) ? $menu['first_link'] : '';
 		} else {
 			$link = isset($menu['paged_link']) ? $menu['paged_link'] : '?'.$menu['variable'].'=';
 			$link .= $menu['previous'];
 		}
 
-		$tpl = $menu['previous']!=$menu['active'] ? 'previous-next.php' : 'previous-next_active.php';
+		$tpl = $menu['previous']!==false ? 'previous-next.php' : 'previous-next_active.php';
 		array_unshift($list, Template::getTemplate($tpl, array(
 			$menu['previous'],
 			$link,
