@@ -52,9 +52,10 @@ class PrimaryView implements View {
 			$tpl = $first!=$menu['active'] ? 'primary.php' : 'primary_active.php';
 			$list[] = Template::getTemplate($tpl, array($first, '', Language::getMessage('page_number', $first)));
 		}
-		foreach ($menu['list'] as $item)
+		foreach ($menu['list'] as $item){
 			$tpl = $item!=$menu['active'] ? 'primary.php' : 'primary_active.php';
 			$list[] = Template::getTemplate($tpl, array($item, $link.$item, Language::getMessage('page_number', $item)));
+		}
 
 		return $list;
 	}
