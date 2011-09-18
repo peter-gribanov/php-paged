@@ -1,0 +1,1 @@
+<span class="paged-last"><?=$result[3]?></span>

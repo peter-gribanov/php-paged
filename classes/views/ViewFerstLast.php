@@ -25,7 +25,7 @@ class ViewFerstLast extends PluginView {
 		$menu = $this->export();
 		$list = parent::getList();
 
-		$tpl = $menu['ferst']!=$menu['active'] ? 'ferst-last.php' : 'ferst-last_active.php';
+		$tpl = $menu['ferst']!=$menu['active'] ? 'ferst.php' : 'ferst_active.php';
 		array_unshift($list, Template::getTemplate($tpl, array(
 			$menu['ferst'],
 			(isset($menu['first_link']) ? $menu['first_link'] : ''),
@@ -33,7 +33,7 @@ class ViewFerstLast extends PluginView {
 			Language::getMessage('page_ferst_name')
 		)));
 
-		$tpl = $menu['last']!=$menu['active'] ? 'ferst-last.php' : 'ferst-last_active.php';
+		$tpl = $menu['last']!=$menu['active'] ? 'last.php' : 'last_active.php';
 		array_push($list, Template::getTemplate($tpl, array(
 			$menu['last'],
 			(isset($menu['paged_link']) ? $menu['paged_link'] : '?'.$menu['variable'].'=').$menu['last'],

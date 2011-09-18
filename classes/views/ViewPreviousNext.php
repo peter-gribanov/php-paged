@@ -32,7 +32,7 @@ class ViewPreviousNext extends PluginView {
 			$link .= $menu['previous'];
 		}
 
-		$tpl = $menu['previous']!==false ? 'previous-next.php' : 'previous-next_active.php';
+		$tpl = $menu['previous']!==false ? 'previous.php' : 'previous_active.php';
 		array_unshift($list, Template::getTemplate($tpl, array(
 			$menu['previous'],
 			$link,
@@ -40,7 +40,7 @@ class ViewPreviousNext extends PluginView {
 			Language::getMessage('page_previous_name')
 		)));
 
-		$tpl = $menu['next']!=$menu['active'] ? 'previous-next.php' : 'previous-next_active.php';
+		$tpl = $menu['next']!=$menu['active'] ? 'next.php' : 'next_active.php';
 		array_push($list, Template::getTemplate($tpl, array(
 			$menu['next'],
 			(isset($menu['paged_link']) ? $menu['paged_link'] : '?'.$menu['variable'].'=').$menu['next'],

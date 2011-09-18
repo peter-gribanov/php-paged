@@ -1,0 +1,1 @@
+<span class="paged-previous"><?=$result[3]?></span>

@@ -1,0 +1,1 @@
+<a href="<?=$result[1]?>" title="<?=$result[2]?>" class="paged-last"><?=$result[3]?></a>

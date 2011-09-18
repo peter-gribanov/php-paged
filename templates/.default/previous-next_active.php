@@ -1,1 +1,0 @@
-<span><?=$result[3]?></span>
