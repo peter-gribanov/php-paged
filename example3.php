@@ -40,14 +40,14 @@ try {
  * Результат выполнения
  * 
  * <ul>
- * 	<li><span>Первая</span></li>
- * 	<li><span>Предыдущая</span></li>
+ * 	<li><span class="paged-ferst">Первая</span></li>
+ * 	<li><span class="paged-previous">>Предыдущая</span></li>
  * 	<li><span>1</span></li>
  * 	<li><a href="http://paged/?p=2" title="Страница 2">2</a></li>
  * 	<li><a href="http://paged/?p=3" title="Страница 3">3</a></li>
  * 	<li><a href="http://paged/?p=4" title="Страница 4">4</a></li>
  * 	<li><a href="http://paged/?p=5" title="Страница 5">5</a></li>
- * 	<li><a href="http://paged/?p=2" title="Следующая страница">Следующая</a></li>
- * 	<li><a href="http://paged/?p=15" title="Последняя страница">Последняя</a></li>
+ * 	<li><a href="http://paged/?p=2" title="Следующая страница" class="paged-next">Следующая</a></li>
+ * 	<li><a href="http://paged/?p=15" title="Последняя страница" class="paged-last">>Последняя</a></li>
  * </ul>
  */
