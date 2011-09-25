@@ -1,53 +1,53 @@
-<?php
-use Paged\Facade;
+<?php exit?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Links Example</title>
+</head>
+<body><?php
 
-require_once 'Facade.php';
+include 'PagedLinks.php';
+
 
 try {
+	// составление 
+	$paged = PagedLinks::create(10, 'p')
+		// длинна списка страниц
+		->setListLength(5);
 
-	// устанавливаем язык
-	Facade::setLangID('ru');
-
-	// инициализируем
-	$menu = Facade::getMenu()
-		// указываем длину списка
-		->setListLength(5)
-		// указываем название переменной
-		->setVariable('p')
-		// указываем номер последней страницы
-		->setLast(15);
-
-	// приводит ссылки к абсолютным
-	$view = Facade::setView($menu, 'Links');
-	// добавляет ссылки на следующую и предыдущую страницу
-	$view = Facade::setView($view, 'PreviousNext');
-	// добавляет ссылки на первую и последнюю страницу
-	$view = Facade::setView($view, 'FerstLast');
-	// отображает результат в списке ul, li
-	$view = Facade::setView($view, 'List');
-	// кэшируем вывод. обработка данных и отработка шаблона выполняется только один раз
-	// повторные вызовы вывода данных будут возвращать данные из кэша
-	$view = Facade::setView($view, 'Cache');
-
-	// отрисовываем меню
-	$view->showPack();
-
-} catch (Exception $e){ // обработчик ошибок
-	exit('Error: '.$e->getMessage());
+} catch (Exception $e){
+	// при составлении структуры допущена ошибка
+	exit('<p><strong>Error: '.$e->getMessage().'</strong></p>');
 }
 
-/**
- * Результат выполнения
- * 
- * <ul>
- * 	<li><span class="paged-ferst">Первая</span></li>
- * 	<li><span class="paged-previous">Предыдущая</span></li>
- * 	<li><span>1</span></li>
- * 	<li><a href="http://paged/?p=2" title="Страница 2">2</a></li>
- * 	<li><a href="http://paged/?p=3" title="Страница 3">3</a></li>
- * 	<li><a href="http://paged/?p=4" title="Страница 4">4</a></li>
- * 	<li><a href="http://paged/?p=5" title="Страница 5">5</a></li>
- * 	<li><a href="http://paged/?p=2" title="Следующая страница" class="paged-next">Следующая</a></li>
- * 	<li><a href="http://paged/?p=15" title="Последняя страница" class="paged-last">Последняя</a></li>
- * </ul>
- */
+
+
+// список страниц не пустой
+if (!$paged->isEmptyList()){
+
+	// предыдущая страница
+	if(!$paged->isVisible($paged->getFirst())){
+		echo "<a href=\"".$paged->getFirstLink()."\" title=\"First page\">"
+			.$paged->getFirst()."</a>\n...\n";
+	}
+
+	// список страниц
+	foreach($paged->getListLinks() as $num=>$link){
+		// это активная страница
+		if($num==$paged->getActive()){
+			echo "<span>".$num."</span>\n";
+		} else {
+			echo "<a href=\"".$link."\" title=\"Page ".$num."\">".$num."</a>\n";
+		}
+	}
+
+	// следующая страница
+	if(!$paged->isVisible($paged->getLast())){
+		echo "...\n<a href=\"".$paged->getLastLink()."\" title=\"Last page\">"
+			.$paged->getLast()."</a>\n";
+	}
+}
+?>
+</body>
+</html>

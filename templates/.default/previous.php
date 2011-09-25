@@ -1,1 +1,0 @@
-<a href="<?=$result[1]?>" title="<?=$result[2]?>" class="paged-previous"><?=$result[3]?></a>
