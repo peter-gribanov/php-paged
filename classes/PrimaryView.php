@@ -13,7 +13,7 @@ require_once 'View.php';
  * @version		4.0 SVN: $Revision$
  * @since		$Date$
  * @link		$HeadURL$
- * @tutorial	http://peter-gribanov.ru/#open-source/paged/paged_4-x
+ * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */

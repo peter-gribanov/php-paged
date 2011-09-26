@@ -16,9 +16,12 @@ require 'classes/PluginView.php';
  * @version		4.0 SVN: $Revision$
  * @since		$Date$
  * @link		$HeadURL$
- * @tutorial	http://peter-gribanov.ru/#open-source/paged
+ * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
+ * @example		example1.php Example 1
+ * @example		example2.php Example 2
+ * @example		example3.php Example 3
  */
 class Facade {
 
