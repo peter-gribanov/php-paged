@@ -5,28 +5,27 @@ require_once 'PagedNumbers.php';
 /**
  * Класс для составления списка ссылок номеров страниц
  * 
- * @license GNU GPL Version 3
- * @copyright 2008, Peter Gribanov
- * @link http://peter-gribanov.ru/license
- * @tutorial http://peter-gribanov.ru/#open-source/paged/links
- * @package Paged
- * @author Peter Gribanov
- * @since 18.11.2010
- * @version 3.4
+ * @package		Paged
+ * @author		Peter S. Gribanov <info@peter-gribanov.ru>
+ * @version		3.4 SVN: $Revision$
+ * @since		$Date$
+ * @link		http://peter-gribanov.ru/open-source/paged/3.4/
+ * @copyright	(c) 2008 by Peter S. Gribanov
+ * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
 class PagedLinks extends PagedNumbers {
 
 	/**
 	 * URL адрес первой страници
 	 * 
-	 * @var string
+	 * @var	string
 	 */
 	private $first_link = '';
 
 	/**
 	 * URL адрес страници с префиксом
 	 * 
-	 * @var string
+	 * @var	string
 	 */
 	private $paged_link = '';
 
@@ -34,20 +33,23 @@ class PagedLinks extends PagedNumbers {
 	/**
 	 * Создает экземпляр класса
 	 * 
-	 * @param string $last Имя переменной GET
-	 * @param integer $variable
-	 * @return PagedLinks
+	 * @param	string	$last		Номер последней страницы
+	 * @param	integer	$variable	Имя переменной GET
+	 * @return	PagedLinks			Объект списка
 	 */
 	public static function create($last, $variable='page'){
-		return parent::create($last)->setVariable($variable);
+		return parent::create($last)
+			->setVariable($variable);
 	}
 
 	/**
+	 * Устанавливает название переменной
+	 * 
 	 * Устанавливает название переменной в которой будут передаваться номера страницы
 	 * Устанавливает базовые URl адреса для последующего составления ссылок
 	 * 
-	 * @param string $variable Имя переменной GET
-	 * @return PagedLinks
+	 * @param	string	$variable	Имя переменной GET
+	 * @return	PagedLinks			Объект списка
 	 */
 	public function setVariable($variable='page'){
 		$this->first_link = ($_SERVER['SERVER_PROTOCOL'][4]=='S' ? 'https' : 'http')
@@ -65,7 +67,7 @@ class PagedLinks extends PagedNumbers {
 	/**
 	 * Возвращает URl адрес активной страницы
 	 * 
-	 * @return string
+	 * @return	string	Адрес активной страницы
 	 */
 	public function getActiveLink(){
 		return $this->getActive()>1 ? $this->paged_link.$this->getActive() : $this->first_link;
@@ -74,7 +76,7 @@ class PagedLinks extends PagedNumbers {
 	/**
 	 * Возвращает URl адрес первой страницы
 	 * 
-	 * @return string
+	 * @return	string	Адрес первой страницы
 	 */
 	public function getFirstLink(){
 		return $this->first_link;
@@ -83,7 +85,7 @@ class PagedLinks extends PagedNumbers {
 	/**
 	 * Возвращает URl адрес последней страницы
 	 * 
-	 * @return string
+	 * @return	string	Адрес последней страницы
 	 */
 	public function getLastLink(){
 		return $this->paged_link.$this->getLast();
@@ -92,7 +94,7 @@ class PagedLinks extends PagedNumbers {
 	/**
 	 * Возвращает URl адрес предыдущей страницы
 	 * 
-	 * @return string
+	 * @return	string	Адрес предыдущей страницы
 	 */
 	public function getPreviousLink(){
 		if (($previous=$this->getPrevious())===false) return '';
@@ -102,7 +104,7 @@ class PagedLinks extends PagedNumbers {
 	/**
 	 * Возвращает URl адрес следующей страницы
 	 * 
-	 * @return string
+	 * @return	string	Адрес следующей страницы
 	 */
 	public function getNextLink(){
 		return $this->getNext() ? $this->paged_link.$this->getNext() : '';
@@ -111,7 +113,7 @@ class PagedLinks extends PagedNumbers {
 	/**
 	 * Возвращает список URl адресов страниц
 	 * 
-	 * @return array
+	 * @return	array	Список адресов страниц
 	 */
 	public function getListLinks(){
 		$numList = $this->getList();
@@ -123,4 +125,3 @@ class PagedLinks extends PagedNumbers {
 	}
 
 }
-?>

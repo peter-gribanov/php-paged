@@ -3,49 +3,48 @@
 /**
  * Класс для составления списка номеров страниц
  * 
- * @license GNU GPL Version 3
- * @copyright 2008, Peter Gribanov
- * @link http://peter-gribanov.ru/license
- * @tutorial http://peter-gribanov.ru/#open-source/paged/numbers
- * @package Paged
- * @author Peter Gribanov
- * @since 18.11.2010
- * @version 3.4
+ * @package		Paged
+ * @author		Peter S. Gribanov <info@peter-gribanov.ru>
+ * @version		3.4 SVN: $Revision$
+ * @since		$Date$
+ * @link		http://peter-gribanov.ru/open-source/paged/3.4/
+ * @copyright	(c) 2008 by Peter S. Gribanov
+ * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
 class PagedNumbers {
 
 	/**
 	 * Номер активной страницы
 	 * 
-	 * @var integer
+	 * @var	integer
 	 */
 	private $active = 1;
 
 	/**
 	 * Номер последней страници
 	 * 
-	 * @var integer
+	 * @var	integer
 	 */
 	private $last = 1;
 
 	/**
 	 * Начало списка номеров
 	 * 
-	 * @var integer
+	 * @var	integer
 	 */
 	private $start = 1;
 
 	/**
 	 * Конец списка номеров
 	 * 
-	 * @var integer
+	 * @var	integer
 	 */
 	private $end = 1;
 
 	/**
 	 * Длинна списка номеров страниц
 	 * 
-	 * @var integer
+	 * @var	integer
 	 */
 	private $list_length = 0;
 
@@ -53,7 +52,7 @@ class PagedNumbers {
 	/**
 	 * Конструктор
 	 * 
-	 * @return void
+	 * @return	void
 	 */
 	protected function __construct(){
 	}
@@ -61,8 +60,8 @@ class PagedNumbers {
 	/**
 	 * Инициализатор класса
 	 * 
-	 * @param integer $last
-	 * @return PagedNumbers
+	 * @param	integer	$last	Номер последней страницы
+	 * @return	PagedNumbers	Объект списка
 	 */
 	public static function create($last){
 		$n = new self();
@@ -72,9 +71,9 @@ class PagedNumbers {
 	/**
 	 * Устанавливает длинну списка ссылок
 	 * 
-	 * @param integer $length
-	 * @throws InvalidArgumentException
-	 * @return PagedNumbers
+	 * @param	integer	$length				Длинну списка
+	 * @throws	InvalidArgumentException	Недопустимое значение
+	 * @return	PagedNumbers				Объект списка
 	 */
 	public function setListLength($length=0){
 		if (!is_int($length) || intval($length)!=$length || $length<0)
@@ -88,9 +87,9 @@ class PagedNumbers {
 	/**
 	 * Проверяет виден ли указанный номер страницы
 	 * 
-	 * @param integer $number
-	 * @throws InvalidArgumentException
-	 * @return boolen
+	 * @param	integer	$number				Номер страницы
+	 * @throws	InvalidArgumentException	Недопустимое значение
+	 * @return	boolen						Результат проверки
 	 */
 	public function isVisible($number){
 		if (!is_int($number) || intval($number)!=$number || $number<0)
@@ -102,7 +101,7 @@ class PagedNumbers {
 	/**
 	 * Проверяет является ли список страниц пустым
 	 * 
-	 * @return boolen
+	 * @return	boolen	Результат проверки
 	 */
 	public function isEmptyList(){
 		return $this->end==1;
@@ -111,9 +110,9 @@ class PagedNumbers {
 	/**
 	 * Устанавливает номер последней страницы
 	 * 
-	 * @param integer $last
-	 * @throws InvalidArgumentException
-	 * @return PagedNumbers
+	 * @param	integer	$last				Номер последней страницы
+	 * @throws	InvalidArgumentException	Недопустимое значение
+	 * @return	PagedNumbers				Объект списка
 	 */
 	public function setLast($last){
 		if (!is_int($last) || intval($last)!=$last || $last<1)
@@ -128,9 +127,9 @@ class PagedNumbers {
 	/**
 	 * Устанавливает номер активной страницы
 	 * 
-	 * @param integer $active
-	 * @throws InvalidArgumentException
-	 * @return PagedNumbers
+	 * @param	integer	$active				Номер активной страницы
+	 * @throws	InvalidArgumentException	Недопустимое значение
+	 * @return	PagedNumbers				Объект списка
 	 */
 	public function setActive($active){
 		if (!is_int($active) || intval($active)!=$active || $active<1)
@@ -144,7 +143,7 @@ class PagedNumbers {
 	/**
 	 * Возвращает номер активной страницы
 	 * 
-	 * @return integer
+	 * @return	integer	Номер активной страницы
 	 */
 	public function getActive(){
 		return $this->active;
@@ -153,7 +152,7 @@ class PagedNumbers {
 	/**
 	 * Возвращает номер первой страницы
 	 * 
-	 * @return integer
+	 * @return	integer	Номер первой страницы
 	 */
 	public function getFirst(){
 		return 1;
@@ -162,7 +161,7 @@ class PagedNumbers {
 	/**
 	 * Возвращает номер последней страницы
 	 * 
-	 * @return integer
+	 * @return	integer	Номер последней страницы
 	 */
 	public function getLast(){
 		return $this->last;
@@ -171,7 +170,7 @@ class PagedNumbers {
 	/**
 	 * Возвращает номер предыдущей страницы
 	 * 
-	 * @return integer
+	 * @return	integer	Номер предыдущей страницы
 	 */
 	public function getPrevious(){
 		return ($this->active-1 >= 1) ? $this->active-1 : false;
@@ -180,7 +179,7 @@ class PagedNumbers {
 	/**
 	 * Возвращает номер следующей страницы
 	 * 
-	 * @return integer
+	 * @return	integer	Номер следующей страницы
 	 */
 	public function getNext(){
 		return ($this->active+1 <= $this->last) ? $this->active+1 : false;
@@ -189,7 +188,7 @@ class PagedNumbers {
 	/**
 	 * Возвращает список номеров страниц
 	 * 
-	 * @return array
+	 * @return	array	Список номеров страниц
 	 */
 	private function calculateList(){
 		// список кнопок пуст или длинна не ограничена
@@ -216,7 +215,7 @@ class PagedNumbers {
 	/**
 	 * Возвращает список номеров страниц
 	 * 
-	 * @return array
+	 * @return	array	Список номеров страниц
 	 */
 	public function getList(){
 		$list = array();
@@ -230,4 +229,3 @@ class PagedNumbers {
 	}
 	
 }
-?>
