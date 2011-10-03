@@ -7,7 +7,7 @@ require_once 'PagedNumbers.php';
  * 
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		3.4 SVN: $Revision$
+ * @version		3.4.1 SVN: $Revision$
  * @since		$Date$
  * @link		http://peter-gribanov.ru/open-source/paged/3.4/
  * @copyright	(c) 2008 by Peter S. Gribanov
@@ -38,7 +38,9 @@ class PagedLinks extends PagedNumbers {
 	 * @return	PagedLinks			Объект списка
 	 */
 	public static function create($last, $variable='page'){
-		return parent::create($last)
+		$p = new self();
+		return $p
+			->setLast($last)
 			->setVariable($variable);
 	}
 

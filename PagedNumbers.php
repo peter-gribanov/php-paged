@@ -5,7 +5,7 @@
  * 
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		3.4 SVN: $Revision$
+ * @version		3.4.1 SVN: $Revision$
  * @since		$Date$
  * @link		http://peter-gribanov.ru/open-source/paged/3.4/
  * @copyright	(c) 2008 by Peter S. Gribanov
@@ -76,7 +76,7 @@ class PagedNumbers {
 	 * @return	PagedNumbers				Объект списка
 	 */
 	public function setListLength($length=0){
-		if (!is_int($length) || intval($length)!=$length || $length<0)
+		if (!is_numeric($length) || intval($length)!=$length || $length<0)
 			throw new InvalidArgumentException('Length list should be an integer number');
 
 		$this->list_length = intval($length);
@@ -92,7 +92,7 @@ class PagedNumbers {
 	 * @return	boolen						Результат проверки
 	 */
 	public function isVisible($number){
-		if (!is_int($number) || intval($number)!=$number || $number<0)
+		if (!is_numeric($number) || intval($number)!=$number || $number<0)
 			throw new InvalidArgumentException('Page number should be an integer number');
 
 		return $number>=$this->start && $number<=$this->end;
@@ -115,7 +115,7 @@ class PagedNumbers {
 	 * @return	PagedNumbers				Объект списка
 	 */
 	public function setLast($last){
-		if (!is_int($last) || intval($last)!=$last || $last<1)
+		if (!is_numeric($last) || intval($last)!=$last || $last<1)
 			throw new InvalidArgumentException('Last page should be an integer number');
 
 		$this->last = intval($last);
@@ -132,7 +132,7 @@ class PagedNumbers {
 	 * @return	PagedNumbers				Объект списка
 	 */
 	public function setActive($active){
-		if (!is_int($active) || intval($active)!=$active || $active<1)
+		if (!is_numeric($active) || intval($active)!=$active || $active<1)
 			throw new InvalidArgumentException('Active page should be an integer number');
 
 		$this->active = intval($active);

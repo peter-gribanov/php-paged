@@ -1,11 +1,4 @@
-<?php exit?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Numbers Example 1</title>
-</head>
-<body><?php
+<?php
 
 include 'PagedNumbers.php';
 
@@ -27,5 +20,14 @@ foreach($paged->getList() as $num){
 }
 
 ?>
-</body>
-</html>
+Результат работы:
+<span>1</span>
+<a href="?page=2" title="Page 2">2</a>
+<a href="?page=3" title="Page 3">3</a>
+<a href="?page=4" title="Page 4">4</a>
+<a href="?page=5" title="Page 5">5</a>
+<a href="?page=6" title="Page 6">6</a>
+<a href="?page=7" title="Page 7">7</a>
+<a href="?page=8" title="Page 8">8</a>
+<a href="?page=9" title="Page 9">9</a>
+<a href="?page=10" title="Page 10">10</a>

@@ -1,14 +1,5 @@
-<?php exit?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Links Example</title>
-</head>
-<body><?php
-
+<?php
 include 'PagedLinks.php';
-
 
 try {
 	// составление 
@@ -49,5 +40,11 @@ if (!$paged->isEmptyList()){
 	}
 }
 ?>
-</body>
-</html>
+Результат работы:
+﻿<span>1</span>
+<a href="http://paged/example3.php?p=2" title="Page 2">2</a>
+<a href="http://paged/example3.php?p=3" title="Page 3">3</a>
+<a href="http://paged/example3.php?p=4" title="Page 4">4</a>
+<a href="http://paged/example3.php?p=5" title="Page 5">5</a>
+...
+<a href="http://paged/example3.php?p=10" title="Last page">10</a>
