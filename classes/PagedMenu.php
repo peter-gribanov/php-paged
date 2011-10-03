@@ -1,5 +1,4 @@
 <?php
-namespace Paged;
 
 /**
  * Модель описывающая список страниц
@@ -7,14 +6,13 @@ namespace Paged;
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		4.0 SVN: $Revision$
+ * @version		4.0.1 SVN: $Revision$
  * @since		$Date$
- * @link		$HeadURL$
- * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
+ * @link		http://peter-gribanov.ru/open-source/paged/4.0/
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
-class Menu {
+class PagedMenu {
 
 	/**
 	 * Номер активной страницы
@@ -46,6 +44,8 @@ class Menu {
 
 	/**
 	 * Длинна списка номеров страниц
+	 * 
+	 * Длинна списка номеров страниц
 	 * При значении 0 выводит весь список
 	 * 
 	 * @var	integer
@@ -53,6 +53,8 @@ class Menu {
 	private $list_length = self::DEFAUL_LIST_LENGTH;
 
 	/**
+	 * Название переменной GET
+	 * 
 	 * Название переменной GET в которой будут передаваться номера страницы
 	 * 
 	 * @var	string
@@ -61,6 +63,8 @@ class Menu {
 
 
 	/**
+	 * Название переменной GET по умолчанию
+	 * 
 	 * Название переменной GET по умолчанию, в которой будут передаваться номера страницы
 	 * 
 	 * @var	string
@@ -69,6 +73,8 @@ class Menu {
 
 
 	/**
+	 * Длинна списка номеров страниц по умолчанию
+	 * 
 	 * Длинна списка номеров страниц по умолчанию
 	 * При значении 0 выводит весь список
 	 * 
@@ -80,13 +86,13 @@ class Menu {
 	/**
 	 * Устанавливает номер последней страницы
 	 *
-	 * @param	integer	$last
-	 * @throws	\InvalidArgumentException
-	 * @return	\Paged\Menu
+	 * @param	integer	$last				Номер последней страницы
+	 * @throws	InvalidArgumentException	Недопустимое значение
+	 * @return	PagedMenu					Объект меню
 	 */
 	public function setLast($last){
 		if (!is_int($last) || $last < 1)
-			throw new \InvalidArgumentException(Language::getMessage('error_last'));
+			throw new InvalidArgumentException(PagedLanguage::getMessage('error_last'));
 
 		$this->last = intval($last);
 		$this->end = $this->last;
@@ -96,13 +102,13 @@ class Menu {
 	/**
 	 * Устанавливает длинну списка ссылок
 	 * 
-	 * @param	integer	$length
-	 * @throws	\InvalidArgumentException
-	 * @return	\Paged\Menu
+	 * @param	integer	$length				Длинну списка ссылок
+	 * @throws	InvalidArgumentException	Недопустимое значение
+	 * @return	PagedMenu					Объект меню
 	 */
 	public function setListLength($length=0){
 		if (!is_int($length) || $length < 0)
-			throw new \InvalidArgumentException(Language::getMessage('error_list_length'));
+			throw new InvalidArgumentException(PagedLanguage::getMessage('error_list_length'));
 
 		$this->list_length = intval($length);
 		return $this;
@@ -111,13 +117,13 @@ class Menu {
 	/**
 	 * Устанавливает номер активной страницы
 	 * 
-	 * @param	integer	$active
-	 * @throws	\InvalidArgumentException
+	 * @param	integer	$active				Номер активной страницы
+	 * @throws	InvalidArgumentException	Недопустимое значение
 	 * @return	void
 	 */
 	private function setActive($active){
 		if (!is_numeric($active) || intval($active)!=$active || $active < 1)
-			throw new \InvalidArgumentException(Language::getMessage('error_active'));
+			throw new InvalidArgumentException(PagedLanguage::getMessage('error_active'));
 
 		$this->active = intval($active);
 	}
@@ -125,13 +131,13 @@ class Menu {
 	/**
 	 * Устанавливает название переменной GET в которой будут передаваться номера страницы
 	 * 
-	 * @param	string	$variable
-	 * @throws	\InvalidArgumentException
-	 * @return	\Paged\Menu
+	 * @param	string	$variable			Название переменной
+	 * @throws	InvalidArgumentException	Недопустимое значение
+	 * @return	PagedMenu					Объект меню
 	 */
 	public function setVariable($variable){
 		if (!is_string($variable) || !trim($variable))
-			throw new \InvalidArgumentException(Language::getMessage('error_variable'));
+			throw new InvalidArgumentException(PagedLanguage::getMessage('error_variable'));
 
 		$this->variable = trim($variable);
 
@@ -144,7 +150,7 @@ class Menu {
 	/**
 	 * Возвращает список номеров страниц
 	 * 
-	 * @return 	array
+	 * @return 	array	Список номеров страниц
 	 */
 	private function calculateList(){
 		// список кнопок пуст или длинна не ограничена
@@ -176,7 +182,7 @@ class Menu {
 	/**
 	 * Экспортирует данные модели
 	 * 
-	 * @return	array
+	 * @return	array	Данные модели
 	 */
 	public function export(){
 		return array(

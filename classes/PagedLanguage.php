@@ -1,21 +1,21 @@
 <?php
-namespace Paged;
 
 /**
- * Клас для включения языковых сообщений
- * Выполняет функцию многоязычности
+ * Класс для включения языковых сообщений
+ * 
+ * Класс для получения сообщения языковых тем. Класс выполняет функцию многоязычности.
+ * По умолчанию используется Английская языковая тема
  * 
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		4.0 SVN: $Revision$
+ * @version		4.0.1 SVN: $Revision$
  * @since		$Date$
- * @link		$HeadURL$
- * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
+ * @link		http://peter-gribanov.ru/open-source/paged/4.0/
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
-class Language {
+class PagedLanguage {
 
 	/**
 	 * Список языковых сообщений
@@ -43,9 +43,9 @@ class Language {
 	/**
 	 * Возвращает сообщение для указанного ключа
 	 * 
-	 * @param	string	$key
-	 * @throws	\Exception
-	 * @return	mixid
+	 * @param	string	$key	Ключ сообщения
+	 * @throws	Exception
+	 * @return	mixid			Сообщение
 	 */
 	public static function getMessage($key){
 		self::loadMessages();
@@ -62,21 +62,22 @@ class Language {
 	}
 
 	/**
-	 * Устанавливает идентификатор языка
+	 * Устанавливает идентификатор языковой темы
 	 * 
-	 * @param	string	$id
-	 * @throws	\InvalidArgumentException
-	 * @return	boolean
+	 * @param	string	$id					Идентификатор языка
+	 * @throws	InvalidArgumentException	Недопустимый идентификатор
+	 * @throws	Exception					Не найдена языковая тема
+	 * @return	boolean						Результат установки
 	 */
 	public static function setLangID($id){
 		if (!is_string($id) || !trim($id) || strlen($id)!=2){
-			throw new \InvalidArgumentException(Language::getMessage('error_lang_id'));
+			throw new InvalidArgumentException(self::getMessage('error_lang_id'));
 			return false;
 		}
 
-		$path = str_replace('\\', '/', dirname(__DIR__).'/lang/'.$id.'/');
+		$path = str_replace('\\', '/', dirname(dirname(__FILE__)).'/lang/'.$id.'/');
 		if (!is_dir($path)){
-			throw new \InvalidArgumentException(Language::getMessage('error_lang_id_path', $id));
+			throw new Exception(self::getMessage('error_lang_id_path', $id));
 			return false;
 		}
 
@@ -86,16 +87,16 @@ class Language {
 	}
 
 	/**
-	 * Загружает список языковых сообщений
+	 * Загружает список сообщений языковой темы
 	 * 
-	 * @throws	\Exception
+	 * @throws	Exception	Языковая тема не обнаружена
 	 * @return	void
 	 */
 	private static function loadMessages(){
 		if (!is_array(self::$messages)){
-			$file = str_replace('\\', '/', dirname(__DIR__).'/lang/'.self::$lang_id.'/.parameters.php');
+			$file = str_replace('\\', '/', dirname(dirname(__FILE__)).'/lang/'.self::$lang_id.'/.parameters.php');
 			if (!file_exists($file)){
-				throw new \Exception('File with language messages is not set.');
+				throw new Exception('File with language messages is not set.');
 				return false;
 			}
 

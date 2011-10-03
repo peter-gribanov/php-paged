@@ -1,28 +1,27 @@
 <?php
-namespace Paged;
-
-require_once 'View.php';
+require_once 'PagedView.php';
 
 /**
  * Базовый декоратор для вида
- * Виды могут декорировать только другие виды
+ * 
+ * Базовый декоратор для вида. Виды могут декорировать только другие виды.
+ * Для декарации мадели используется базовый декаратор PagedPrimaryView
  * 
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		4.0 SVN: $Revision$
- * @link		$HeadURL$
- * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
+ * @version		4.0.1 SVN: $Revision$
+ * @since		$Date$
+ * @link		http://peter-gribanov.ru/open-source/paged/4.0/
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
- * @since		File available since Release 3.4
  */
-abstract class PluginView implements View {
+abstract class PagedPluginView implements PagedView {
 
 	/**
 	 * Декорируемый объект модели
 	 * 
-	 * @var	\Paged\View
+	 * @var	PagedView
 	 */
 	private $view;
 
@@ -30,17 +29,17 @@ abstract class PluginView implements View {
 	/**
 	 * Конструктор декарирующий вида
 	 * 
-	 * @param	\Paged\View	$view
+	 * @param	PagedView	$view	Объект вида
 	 * @return	void
 	 */
-	public function __construct(View $view){
+	public function __construct(PagedView $view){
 		$this->view = $view;
 	}
 
 	/**
 	 * Возвращает меню в виде списка
 	 * 
-	 * @return	array
+	 * @return	array	Меню в виде списка
 	 */
 	public function getList(){
 		return $this->view->getList();
@@ -49,7 +48,7 @@ abstract class PluginView implements View {
 	/**
 	 * Возвращает меню упакованное в строку
 	 * 
-	 * @return string
+	 * @return	string	Меню упакованное в строку
 	 */
 	public function getPack(){
 		return $this->view->getPack();
@@ -58,7 +57,7 @@ abstract class PluginView implements View {
 	/**
 	 * Выводит меню упакованное в строку
 	 * 
-	 * @return void
+	 * @return	void
 	 */
 	public function showPack(){
 		$this->view->showPack();
@@ -67,7 +66,8 @@ abstract class PluginView implements View {
 	/**
 	 * Экспортирует данные модели
 	 * 
-	 * @return	array
+	 * @see		PagedMenu::export()
+	 * @return	array	Данные модели
 	 */
 	public function export(){
 		return $this->view->export();

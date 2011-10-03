@@ -1,5 +1,4 @@
 <?php
-namespace Paged;
 
 /**
  * Вид с поддержкой полных ссылок
@@ -7,20 +6,19 @@ namespace Paged;
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		4.0 SVN: $Revision$
+ * @version		4.0.1 SVN: $Revision$
  * @since		$Date$
  * @link		$HeadURL$
- * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
+ * @link		http://peter-gribanov.ru/open-source/paged_4.0/
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
-
-class ViewLinks extends PluginView {
+class PagedViewLinks extends PagedPluginView {
 
 	/**
 	 * Возвращает меню в виде списка
 	 * 
-	 * @return	array
+	 * @return	array	Меню в виде списка
 	 */
 	public function getList(){
 		$menu = $this->export();
@@ -29,7 +27,11 @@ class ViewLinks extends PluginView {
 		if ($menu['list']){
 			$first = array_shift($menu['list']);
 			$tpl = $first!=$menu['active'] ? 'primary.php' : 'primary_active.php';
-			$list[] = Template::getTemplate($tpl, array($first, $menu['first_link'], Language::getMessage('page_number', $first)));
+			$list[] = PagedTemplate::getTemplate($tpl, array(
+				$first,
+				$menu['first_link'],
+				PagedLanguage::getMessage('page_number', $first)
+			));
 		}
 		foreach ($menu['list'] as $item){
 			if ($item==$menu['active']){
@@ -39,7 +41,11 @@ class ViewLinks extends PluginView {
 				$link = $menu['paged_link'].$item;
 				$tpl = 'primary.php';
 			}
-			$list[] = Template::getTemplate($tpl, array($item, $link, Language::getMessage('page_number', $item)));
+			$list[] = PagedTemplate::getTemplate($tpl, array(
+				$item,
+				$link,
+				PagedLanguage::getMessage('page_number', $item)
+			));
 		}
 
 		return $list;
@@ -48,7 +54,8 @@ class ViewLinks extends PluginView {
 	/**
 	 * Экспортирует данные модели
 	 * 
-	 * @return	array
+	 * @see		PagedMenu::export()
+	 * @return	array	Данные модели
 	 */
 	public function export(){
 		$menu = parent::export();

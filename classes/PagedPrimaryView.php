@@ -1,28 +1,26 @@
 <?php
-namespace Paged;
-
-require_once 'View.php';
+require_once 'PagedView.php';
 
 /**
  * Основной вид для меню
- * Он является базовым для других видов
+ * 
+ * Основной вид для меню являющийся базовым для других видов
  * 
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		4.0 SVN: $Revision$
+ * @version		4.0.1 SVN: $Revision$
  * @since		$Date$
- * @link		$HeadURL$
- * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
+ * @link		http://peter-gribanov.ru/open-source/paged/4.0/
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
-class PrimaryView implements View {
+class PagedPrimaryView implements PagedView {
 
 	/**
 	 * Декорируемый объект модели
 	 * 
-	 * @var	\Paged\Menu
+	 * @var	PagedMenu
 	 */
 	private $menu;
 
@@ -30,17 +28,17 @@ class PrimaryView implements View {
 	/**
 	 * Конструктор декарирующий модель
 	 * 
-	 * @param	\Paged\Menu	$menu
+	 * @param	PagedMenu	$menu	Объект меню
 	 * @return	void
 	 */
-	public function __construct(Menu $menu){
+	public function __construct(PagedMenu $menu){
 		$this->menu = $menu;
 	}
 
 	/**
 	 * Возвращает меню в виде списка
 	 * 
-	 * @return	array
+	 * @return	array	Меню в виде списка
 	 */
 	public function getList(){
 		$menu = $this->export();
@@ -50,11 +48,11 @@ class PrimaryView implements View {
 		if ($menu['list']){
 			$first = array_shift($menu['list']);
 			$tpl = $first!=$menu['active'] ? 'primary.php' : 'primary_active.php';
-			$list[] = Template::getTemplate($tpl, array($first, '', Language::getMessage('page_number', $first)));
+			$list[] = PagedTemplate::getTemplate($tpl, array($first, '', PagedLanguage::getMessage('page_number', $first)));
 		}
 		foreach ($menu['list'] as $item){
 			$tpl = $item!=$menu['active'] ? 'primary.php' : 'primary_active.php';
-			$list[] = Template::getTemplate($tpl, array($item, $link.$item, Language::getMessage('page_number', $item)));
+			$list[] = PagedTemplate::getTemplate($tpl, array($item, $link.$item, PagedLanguage::getMessage('page_number', $item)));
 		}
 
 		return $list;
@@ -63,25 +61,26 @@ class PrimaryView implements View {
 	/**
 	 * Возвращает меню упакованное в строку
 	 * 
-	 * @return string
+	 * @return	string	Меню упакованное в строку
 	 */
 	public function getPack(){
-		return Template::getTemplate('primary_pack.php', $this->getList());
+		return PagedTemplate::getTemplate('primary_pack.php', $this->getList());
 	}
 
 	/**
 	 * Выводит меню упакованное в строку
 	 * 
-	 * @return void
+	 * @return	void
 	 */
 	public function showPack(){
-		Template::showTemplate('primary_pack.php', $this->getList());
+		PagedTemplate::showTemplate('primary_pack.php', $this->getList());
 	}
 
 	/**
 	 * Экспортирует данные модели
 	 * 
-	 * @return	array
+	 * @see		PagedMenu::export()
+	 * @return	array	Данные модели
 	 */
 	public function export(){
 		return $this->menu->export();

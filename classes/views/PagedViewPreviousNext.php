@@ -1,5 +1,4 @@
 <?php
-namespace Paged;
 
 /**
  * Вид показывает предыдущую и следующую страницу
@@ -7,19 +6,19 @@ namespace Paged;
  * @category	Basic library
  * @package		Paged
  * @author		Peter S. Gribanov <info@peter-gribanov.ru>
- * @version		4.0 SVN: $Revision$
+ * @version		4.0.1 SVN: $Revision$
  * @since		$Date$
  * @link		$HeadURL$
- * @link		http://peter-gribanov.ru/#open-source/paged/paged_4-x
+ * @link		http://peter-gribanov.ru/open-source/paged_4.0/
  * @copyright	(c) 2008 by Peter S. Gribanov
  * @license		http://peter-gribanov.ru/license	GNU GPL Version 3
  */
-class ViewPreviousNext extends PluginView {
+class PagedViewPreviousNext extends PagedPluginView {
 
 	/**
 	 * Возвращает меню в виде списка
 	 * 
-	 * @return	array
+	 * @return	array	Меню в виде списка
 	 */
 	public function getList(){
 		$menu = $this->export();
@@ -33,19 +32,19 @@ class ViewPreviousNext extends PluginView {
 		}
 
 		$tpl = $menu['previous']!==false ? 'previous.php' : 'previous_active.php';
-		array_unshift($list, Template::getTemplate($tpl, array(
+		array_unshift($list, PagedTemplate::getTemplate($tpl, array(
 			$menu['previous'],
 			$link,
-			Language::getMessage('page_previous'),
-			Language::getMessage('page_previous_name')
+			PagedLanguage::getMessage('page_previous'),
+			PagedLanguage::getMessage('page_previous_name')
 		)));
 
-		$tpl = $menu['next']!=$menu['active'] ? 'next.php' : 'next_active.php';
-		array_push($list, Template::getTemplate($tpl, array(
+		$tpl = $menu['next']!==false ? 'next.php' : 'next_active.php';
+		array_push($list, PagedTemplate::getTemplate($tpl, array(
 			$menu['next'],
 			(isset($menu['paged_link']) ? $menu['paged_link'] : '?'.$menu['variable'].'=').$menu['next'],
-			Language::getMessage('page_next'),
-			Language::getMessage('page_next_name')
+			PagedLanguage::getMessage('page_next'),
+			PagedLanguage::getMessage('page_next_name')
 		)));
 
 		return $list;
